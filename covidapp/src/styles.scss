@@ -4,11 +4,11 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
     min-height: 100vh;
-    font-family: 'Roboto', sans-serif;
     background-color: #e5e5f7;
     opacity: 0.8;
     background-image: radial-gradient(#444cf7 0.5px, transparent 0.5px), radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);

@@ -1,0 +1,88 @@
+.container {
+    width: 90%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 20px;
+    padding: 2em 0;
+}
+
+.file_container {
+    width: 60%;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    padding-left: 1rem;
+
+    input[type=file]::file-selector-button {
+        margin-right: 20px;
+        border: none;
+        background: #084cdf;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        transition: background .2s ease-in-out;
+    }
+
+    input[type=file]::file-selector-button:hover {
+        background: #0d45a5;
+    }
+
+    @media screen and (min-width: 1020px) {
+        padding-left: 5rem;
+    }
+
+}
+
+.container_stats {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    @media screen and (min-width: 1020px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+.more,
+.less,
+.most_affected,
+.deaths_and_poblation {
+    width: 90%;
+    height: 55%;
+    padding: 2em 0;
+    margin-bottom: 1em;
+    display: flex;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 10px -5px rgb(0 0 0 / 30%);
+    background-color: #fff;
+}
+
+.more,
+.less {
+    height: 30%;
+}
+
+@media screen and (min-width: 1020px) {
+
+    .file_container {
+        width: 100%;
+    }
+
+    .more,
+    .less,
+    .most_affected,
+    .deaths_and_poblation {
+        width: 45%;
+    }
+
+}
