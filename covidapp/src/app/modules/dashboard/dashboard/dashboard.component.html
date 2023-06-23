@@ -1,6 +1,11 @@
 <section class="container">
     <div class="file_container">
-        <input type="file" name="data" id="data">
+        <input
+            type="file"
+            name="data"
+            id="data"
+            (change)="redCsv($event)"
+        >
     </div>
     <section class="container_stats">
         <section class="more">
