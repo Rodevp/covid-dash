@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from "xlsx";
-import { DateObject, Sheet } from '../dashboard.t';
+import { DataParse, DateObject, Sheet } from '../dashboard.t';
 
 @Component({
   selector: 'app-dashboard',
@@ -39,13 +39,30 @@ export class DashboardComponent implements OnInit {
 
   parseObjectForDateAndPopulation(data: Sheet[]) {
 
-    const dataOfPopulation = data.map(sheet => this.evaluateObjectKeys(sheet))
+    const dataParsed = data.map(sheet => this.parseDataOfCSV(sheet)).flatMap(item => ({
+      state: item.provinceState,
+      countDeaths: item.deathsByDate.valueDate
+    })).reduce((prev, current) => {
+
+      if (current.state in prev) {
+        prev[current.state] = prev[current.state] + current.countDeaths
+      }
+      else {
+        prev[current.state] = current.countDeaths
+      }
+
+      return prev
+
+    }, {} as Record<string, number>);
+
+    console.log(dataParsed);
 
   }
 
-  evaluateObjectKeys(object: Sheet) {
 
-    const deathsByDate = this.getKeysForDates(object);
+  parseDataOfCSV(object: Sheet) {
+
+    const deathsByDate = this.getDataForDates(object);
     const provinceAndPopulation = this.getPopulationAndState(object);
 
     const data = {
@@ -53,31 +70,26 @@ export class DashboardComponent implements OnInit {
       ...provinceAndPopulation
     }
 
-    console.log(data)
+
+    return data
 
   }
 
 
-  getKeysForDates(object: Sheet) {
+  getDataForDates(object: Sheet) {
 
     const dates = Object.keys(object).slice(12, -1);
     const dateValues = Object.values(object).slice(12, -1);
 
-    const arrayObjectsOfDate: DateObject[] = [];
+    const lastDate = dates.at(-1);
+    const totalDeaths = dateValues.reduce((current, acc) => current + acc, 0);
 
-    dates.forEach((date, i) => {
+    const objectsOfDate: DateObject = {
+      date: lastDate,
+      valueDate: totalDeaths
+    };
 
-      const dateObject = {
-        date: date,
-        valueDate: dateValues[i]
-      }
-
-      arrayObjectsOfDate.push(dateObject);
-
-    })
-
-
-    return arrayObjectsOfDate
+    return objectsOfDate
 
   }
 
@@ -93,8 +105,6 @@ export class DashboardComponent implements OnInit {
     }
  
   }
-
-
 
 
   ngOnInit(): void {

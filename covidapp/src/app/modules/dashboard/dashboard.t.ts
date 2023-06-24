@@ -14,7 +14,13 @@ export interface Sheet {
 }
 
 export interface DateObject {
-    date: string,
+    date: string | undefined,
     valueDate: number
+}
+
+export interface DataParse {
+    provinceState: String
+    population: number
+    deathsByDate: DateObject
 }
 
