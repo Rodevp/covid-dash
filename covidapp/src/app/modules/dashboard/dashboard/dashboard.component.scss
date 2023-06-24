@@ -87,3 +87,31 @@
     }
 
 }
+
+.more {
+    animation: scale-up-top 0.4s;
+}
+
+.less {
+    animation: scale-up-top 0.6s;
+}
+
+.most_affected {
+    animation: scale-up-top 0.7s;
+}
+
+.deaths_and_poblation {
+    animation: scale-up-top 0.8s;
+}
+
+@keyframes scale-up-top {
+    0% {
+        transform: scale(.5);
+        transform-origin: center top
+    }
+
+    100% {
+        transform: scale(1);
+        transform-origin: center top
+    }
+}

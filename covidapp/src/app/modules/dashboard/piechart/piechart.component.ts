@@ -12,7 +12,7 @@ export class PieChartComponent {
   @Input() values: number[] = [];
 
   pieChartOptions: ChartOptions<'pie'> = {
-    responsive: true,
+    responsive: false,
   };
   pieChartLegend = true;
   pieChartPlugins = [];
