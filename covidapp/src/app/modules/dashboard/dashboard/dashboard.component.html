@@ -1,24 +1,38 @@
 <section class="container">
     <div class="file_container">
-        <input
-            type="file"
-            name="data"
-            id="data"
-            (change)="redCsv($event)"
-        >
+        <input type="file" name="data" id="data" (change)="redCsv($event)">
     </div>
     <section class="container_stats">
         <section class="more">
-            Estado con mayor
+            <h3>Estado con mayor tasa de mortalidad </h3>
+            <div>
+                Nombre: {{ maxTotalDeaths.state }}
+            </div>
+            <div>
+                Muertes: {{ maxTotalDeaths.value }}
+            </div>
         </section>
         <section class="less">
-            Estado con menor
+            <h3>Estado con menor tasa de mortalidad </h3>
+            <div>
+                Nombre: {{ minTotalDeaths.state }}
+            </div>
+            <div>
+                Muertes: {{ minTotalDeaths.value }}
+            </div>
         </section>
         <section class="most_affected">
-            Estado más afectado
+            <h3>Estado más afectado según su tasa de mortalidad</h3>
+            <div>
+                Nombre: {{ populationMod.state }}
+            </div>
+            <div>
+                Muertes: {{ populationMod.total.toFixed(2) }} % de tasa de mortalidad
+            </div>
         </section>
         <section class="deaths_and_poblation">
-            Grafica de muertes y poblacion
+            <h3>Gráfico de mortalidad</h3>
+            <app-pie-chart [label]="labelsData" [values]="valuesDataPie"></app-pie-chart>
         </section>
     </section>
 </section>
